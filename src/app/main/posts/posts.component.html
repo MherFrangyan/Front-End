@@ -1,0 +1,38 @@
+<div class="main-block" *ngFor="let post of posts">
+  <div *ngIf="post.id !== activeEditPost">
+    <div class="header-block">
+      <h2 class="title-block">{{post.title | titlecase}}</h2>
+      <div class="reformat-block">
+      <span class="edit" (click)="toggleEdit(post.id)">
+        <img src="assets/img/edit.svg" alt="icon">
+      </span>
+        <span class="delete" (click)="removePost()">
+        <img src="assets/img/delete.svg" alt="icon">
+      </span>
+      </div>
+    </div>
+    <div class="post-description">
+      <p>{{post.body}}</p>
+    </div>
+  </div>
+  <div *ngIf="post.id === activeEditPost">
+    <form [formGroup]="editForm" (ngSubmit)="saveChanges()">
+      <div class="form-group">
+        <input type="text"
+               formControlName="title"
+               class="form-control input-area"
+               maxlength="255">
+      </div>
+      <div class="form-group">
+        <textarea class="form-control text-area"
+                  formControlName="body"
+                  maxlength="255"></textarea>
+      </div>
+      <button class="btn btn-save"
+              [disabled]="editForm.value.title === post.title || editForm.value.body === post.body || editForm.value.title.trim() === '' || editForm.value.body.trim() === ''">Save
+      </button>
+      <button class="btn btn-cancel" (click)="activeEditPost = ''">Cancel</button>
+    </form>
+  </div>
+
+</div>

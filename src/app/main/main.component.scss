@@ -1,0 +1,75 @@
+.content{
+  padding: 10px;
+  justify-content: space-between;
+  display: flex;
+}
+.main-block {
+  background: #F2F4F7;
+  max-width: 500px;
+  border-radius: 15px;
+  padding: 20px;
+  .title-block{
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: #101828;
+    margin-bottom: 10px;
+    max-width: 350px;
+  }
+  .form-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    label{
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 18px;
+      color: #667085;
+    }
+    .form-control{
+      padding: 8px 10px;
+      background: #FFFFFF;
+      border: 1px solid #D0D5DD;
+      box-sizing: border-box;
+      box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+      border-radius: 8px;
+      &.text-area{
+        max-width: 350px;
+        min-width: 350px;
+        min-height: 125px;
+        max-height: 125px;
+      }
+      &.input-area{
+        min-width: 200px;
+        max-width: 200px;
+      }
+      &:focus{
+        outline: none;
+      }
+    }
+
+  }
+  .btn{
+    background: #1570EF;
+    border: 1px solid #1570EF;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05);
+    cursor: pointer;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #FFFFFF;
+    padding: 5px 40px;
+    &:disabled{
+      opacity: 0.5;
+      cursor: no-drop;
+    }
+    &.btn-cancel{
+      margin-left: 10px;
+      color: black;
+      background: #fff;
+      border-color: #fff;
+    }
+  }
+}

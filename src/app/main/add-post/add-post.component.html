@@ -1,0 +1,27 @@
+<div class="main-block">
+  <h1 class="title-block">Create Note</h1>
+  <form [formGroup]="postForm" (ngSubmit)="createPost()">
+    <div class="form-group">
+      <label class="Title">Note title</label>
+      <input type="text"
+             class="form-control input-area"
+             placeholder="Eg: Lorem"
+             id="Title"
+             formControlName="title"
+             maxlength="255">
+    </div>
+    <div class="form-group">
+      <label for="Description">Note</label>
+      <textarea class="form-control text-area"
+                placeholder="Write description..."
+                formControlName="body"
+                id="Description"
+                maxlength="255"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-create"
+            [disabled]="postForm.invalid ||
+            postForm.value.title.trim() === '' ||
+            postForm.value.body.trim() === ''">Create</button>
+  </form>
+</div>
