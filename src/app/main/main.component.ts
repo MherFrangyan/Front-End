@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   public postItem: any;
+  public search: string = ''
   constructor() { }
 
   ngOnInit(): void {

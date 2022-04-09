@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {PostService} from "../service/post.service";
 import {FormControl, FormGroup} from "@angular/forms";
-import {ifStmt} from "@angular/compiler/src/output/output_ast";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-posts',
@@ -10,6 +10,7 @@ import {ifStmt} from "@angular/compiler/src/output/output_ast";
 })
 export class PostsComponent implements OnInit, OnChanges {
   @Input() newPost: any;
+  @Input() searchPost: any;
   public posts: any = [];
   public activeEditPost: any;
   public editForm = new FormGroup({
@@ -17,9 +18,13 @@ export class PostsComponent implements OnInit, OnChanges {
     body: new FormControl(''),
     userId: new FormControl(1)
   })
-  constructor(public postService: PostService) {
+  constructor(public postService: PostService,
+              public toaster: ToastrService) {
   }
   ngOnChanges(changes: SimpleChanges) {
+    if (changes.searchPost) {
+      return
+    }
     if (changes.newPost.currentValue) {
       this.posts.unshift(this.newPost)
     }
@@ -46,16 +51,32 @@ export class PostsComponent implements OnInit, OnChanges {
 
   }
 
-  removePost() {
-    console.log('rrrrrrrrrrrrrrrrrrrrrr')
+  removePost(index: number, id: number) {
+    this.postService.deletePost(id).subscribe(res => {
+      this.toaster.success('Post deleted successfully')
+      this.posts.splice(this.posts.filter((indexPost: any) => indexPost.id === id), 1)
+      console.log(res);
+    })
+
   }
 
   saveChanges() {
     console.log(this.editForm.value)
+    if (!this.editForm.value.title.trim() || !this.editForm.value.body.trim()) {
+      this.toaster.warning('Please write text')
+      return;
+    }
     this.postService.updateData(this.editForm.value).subscribe( (res: any) => {
-      console.log(res);
+      this.toaster.success('Data saved successfully')
+      this.posts.forEach((post: any) => {
+         if (post.id === this.activeEditPost){
+           console.log(post);
+           post.title = this.editForm.value.title
+           post.body = this.editForm.value.body
+         }
+      })
+      this.activeEditPost = ''
     });
-    // console.log(this.editForm.value, 'ttttttttttt')
   }
 
 }

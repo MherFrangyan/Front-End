@@ -1,6 +1,19 @@
+<div class="search-block">
+  <div class="form-group">
+    <span class="form-control input-area">
+      <input type="text" placeholder="Search Notes"
+             class="search-input"
+             [(ngModel)]="search">
+      <img src="assets/img/search.svg" alt="icon">
+    </span>
+  </div>
+
+</div>
 <div class="content">
   <app-add-post (newPost)="addPosts($event)"></app-add-post>
-  <app-posts [newPost]="postItem"></app-posts>
+  <app-posts
+    [newPost]="postItem"
+    [searchPost]="search"></app-posts>
   <app-chart></app-chart>
 </div>
 

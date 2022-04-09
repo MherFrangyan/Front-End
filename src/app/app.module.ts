@@ -9,6 +9,9 @@ import {ChartComponent} from "./main/chart/chart.component";
 import {CommonModule} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {ToastrModule} from "ngx-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { FilterPipe } from './main/pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -16,14 +19,17 @@ import {HttpClientModule} from "@angular/common/http";
     MainComponent,
     AddPostComponent,
     PostsComponent,
-    ChartComponent
+    ChartComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
