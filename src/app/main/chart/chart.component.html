@@ -1,1 +1,13 @@
-<p>chart works!</p>
+<div class="main-block">
+  <ejs-chart id="chart-container"
+             [primaryXAxis]="xAxis"
+             [primaryYAxis]="yAxis"
+             [title]="blockTitle">
+    <e-series-collection>
+      <e-series type='Line' [dataSource]="postDate"
+                xName='date' yName='count'
+                name='PostCount' [marker]="markerSettings"></e-series>
+    </e-series-collection>
+  </ejs-chart>
+</div>
+

@@ -13,7 +13,8 @@
   <app-add-post (newPost)="addPosts($event)"></app-add-post>
   <app-posts
     [newPost]="postItem"
-    [searchPost]="search"></app-posts>
-  <app-chart></app-chart>
+    [searchPost]="search"
+    (sendCount)="postsCounts($event)"></app-posts>
+  <app-chart [postCount]="postData"></app-chart>
 </div>
 

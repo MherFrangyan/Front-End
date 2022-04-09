@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ToastrModule} from "ngx-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import { FilterPipe } from './main/pipes/filter.pipe';
+import {ChartModule, DateTimeCategoryService, DateTimeService, LineSeriesService} from "@syncfusion/ej2-angular-charts";
 
 @NgModule({
   declarations: [
@@ -26,12 +27,17 @@ import { FilterPipe } from './main/pipes/filter.pipe';
     BrowserModule,
     CommonModule,
     FormsModule,
+    ChartModule,
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    DateTimeService,
+    LineSeriesService,
+    DateTimeCategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -3,11 +3,21 @@
   justify-content: space-between;
   display: flex;
   flex-wrap: wrap;
+  @media(max-width: 1500px) {
+    justify-content: space-around;
+  }
+  app-posts, app-add-post{
+    margin-bottom: 20px;
+  }
 }
 
 .search-block {
   margin: 10px;
-
+  .form-group{
+    @media(max-width: 900px) {
+      align-items: center;
+    }
+  }
   span.input-area {
     display: flex;
     align-items: center;
@@ -52,6 +62,10 @@
       min-width: 350px;
       min-height: 125px;
       max-height: 125px;
+      @media(max-width: 480px) {
+        max-width: 300px;
+        min-width: 300px;
+      }
     }
 
     &.input-area {
@@ -79,6 +93,7 @@
     color: #101828;
     margin-bottom: 10px;
     max-width: 350px;
+    word-break: break-all;
   }
 
   .btn {
