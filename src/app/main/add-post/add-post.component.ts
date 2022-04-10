@@ -14,7 +14,9 @@ export class AddPostComponent implements OnInit {
     id: new FormControl(''),
     userId: new FormControl(1),
   })
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

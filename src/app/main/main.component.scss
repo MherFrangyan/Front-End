@@ -6,23 +6,27 @@
   @media(max-width: 1500px) {
     justify-content: space-around;
   }
-  app-posts, app-add-post{
+
+  app-posts, app-add-post {
     margin-bottom: 20px;
   }
 }
 
 .search-block {
   margin: 10px;
-  .form-group{
+
+  .form-group {
     @media(max-width: 900px) {
       align-items: center;
     }
   }
+
   span.input-area {
     display: flex;
     align-items: center;
     padding: 0;
-    img{
+
+    img {
       width: 18px;
     }
   }
@@ -31,7 +35,8 @@
     padding: 5px;
     border: none;
     border-radius: 8px;
-    &:focus{
+
+    &:focus {
       outline: none;
     }
   }

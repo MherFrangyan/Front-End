@@ -12,7 +12,9 @@ export class ChartComponent implements OnInit, OnChanges {
   public markerSettings: object = {}
   public xAxis: object = {}
   public yAxis: object = {}
-  constructor() { }
+
+  constructor() {
+  }
 
 
   ngOnChanges(changes: SimpleChanges) {

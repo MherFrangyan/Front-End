@@ -1,12 +1,13 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  constructor(public https: HttpClient) { }
+  constructor(public https: HttpClient) {
+  }
 
 
   getPosts() {
@@ -17,7 +18,7 @@ export class PostService {
     let headers = new HttpHeaders();
 
     headers = headers.set('Content-Type', 'application/x-www-form-urlencoded');
-    return this.https.post(`https://jsonplaceholder.typicode.com/posts`, body,{headers: headers})
+    return this.https.post(`https://jsonplaceholder.typicode.com/posts`, body, {headers: headers})
   }
 
   deletePost(id: number) {

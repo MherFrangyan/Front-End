@@ -10,18 +10,18 @@ export class MainComponent implements OnInit {
   public postItem: any;
   public search: string = ''
   public postData: any;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
 
   addPosts(e: any) {
     this.postItem = e;
-    console.log(e);
   }
 
   postsCounts(ev: any) {
     this.postData = ev;
-    console.log(this.postData,'this.postData');
   }
 }

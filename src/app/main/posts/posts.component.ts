@@ -16,40 +16,37 @@ export class PostsComponent implements OnInit, OnChanges {
   @Output() sendCount = new EventEmitter();
   public posts: any = [];
   public activeEditPost: any;
-  public postCount:any = {};
+  public postCount: any = {};
   public editForm = new FormGroup({
     title: new FormControl(''),
     body: new FormControl(''),
     userId: new FormControl(1)
   })
+
   constructor(public postService: PostService,
               public toaster: ToastrService,
               public datePipe: DatePipe) {
   }
+
   ngOnChanges(changes: SimpleChanges) {
     if (changes.searchPost) {
       return
     }
     if (changes.newPost.currentValue) {
       this.postCount = {}
-      this.newPost = {...this.newPost, date: this.datePipe.transform(Date.now(),'M/d/yy, h:mm')}
+      this.newPost = {...this.newPost, date: this.datePipe.transform(Date.now(), 'M/d/yy, h:mm')}
       this.posts.unshift(this.newPost)
 
       this.postCountFunc()
-      console.log(this.postCount,'ng change');
     }
   }
 
   ngOnInit(): void {
-    this.postService.getPosts().subscribe((res:any) => {
+    this.postService.getPosts().subscribe((res: any) => {
       res.map((post: any) => {
-        console.log(post,'res.map');
-        this.posts.push({...post, date: this.datePipe.transform(Date.now(),'M/d/yy, h:mm')})
+        this.posts.push({...post, date: this.datePipe.transform(Date.now(), 'M/d/yy, h:mm')})
       })
-      console.log('this.posts')
       this.postCountFunc()
-      console.log(this.posts);
-      console.log(this.postCount);
     })
   }
 
@@ -62,35 +59,29 @@ export class PostsComponent implements OnInit, OnChanges {
           body: data.body,
         })
       });
-
-    console.log(this.editForm.value)
-
   }
 
   removePost(index: number, id: number) {
     this.postService.deletePost(id).subscribe(res => {
       this.toaster.success('Post deleted successfully')
       this.posts.splice(index, 1)
-      console.log(res);
       this.postCountFunc()
     })
 
   }
 
   saveChanges() {
-    console.log(this.editForm.value)
     if (!this.editForm.value.title.trim() || !this.editForm.value.body.trim()) {
       this.toaster.warning('Please write text')
       return;
     }
-    this.postService.updateData(this.editForm.value).subscribe( (res: any) => {
+    this.postService.updateData(this.editForm.value).subscribe((res: any) => {
       this.toaster.success('Data saved successfully')
       this.posts.forEach((post: any) => {
-         if (post.id === this.activeEditPost){
-           console.log(post);
-           post.title = this.editForm.value.title
-           post.body = this.editForm.value.body
-         }
+        if (post.id === this.activeEditPost) {
+          post.title = this.editForm.value.title
+          post.body = this.editForm.value.body
+        }
       })
       this.activeEditPost = ''
     });
@@ -101,8 +92,8 @@ export class PostsComponent implements OnInit, OnChanges {
     this.posts.forEach((value: any) => {
       this.postCount[value.date] = (this.postCount[value.date] || 0) + 1
     })
-    let data:any = []
-    for(let key in this.postCount) {
+    let data: any = []
+    for (let key in this.postCount) {
       data.push({date: key, count: this.postCount[key]})
     }
     this.sendCount.emit(data)
